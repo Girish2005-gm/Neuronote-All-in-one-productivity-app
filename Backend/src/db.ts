@@ -1,10 +1,8 @@
 import mongoose, { model, Schema } from "mongoose";
-mongoose.connect("mongodb://localhost:27017/brainly")
-  .then(() => console.log("✅ MongoDB connected"))
-  .catch((err) => console.error("❌ MongoDB connection error:", err));
-
-
-
+import { MONGODB_URI } from "./config";
+mongoose.connect(MONGODB_URI)
+  .then(() => console.log("MongoDB connected"))
+  .catch((err) => console.error("MongoDB connection error:", err));
 
 const UserSchema = new Schema({
     username: { type: String, unique: true },
@@ -14,16 +12,12 @@ const UserSchema = new Schema({
 export const UserModel = model("User", UserSchema);
 
 
-
-
-
-
 const ContentSchema = new Schema({
   title: String,
   link: String,
   type: {
     type: String,
-    enum: ["document", "link", "youtube", "twitter"], // ✅ Include all types you use
+    enum: ["document", "link", "youtube", "twitter"], 
     required: true
   },
   tags: [{ type: mongoose.Types.ObjectId, ref: 'Tag' }],
@@ -33,8 +27,6 @@ const ContentSchema = new Schema({
 
 
 export const ContentModel = model("Content", ContentSchema);
-
-
 
 
 
@@ -54,12 +46,5 @@ const TagSchema = new Schema({
 });
 
 export const TagModel = model("Tag", TagSchema);
-
-
-
-
-// module.exports={
-//phale ese karte the exports
-// }
 
 
