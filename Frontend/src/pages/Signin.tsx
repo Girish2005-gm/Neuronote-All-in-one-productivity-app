@@ -6,7 +6,7 @@ import { BACKEND_URL } from "../config";
 import { useAuth } from "../context/AuthContext";
 
 function Signin() {
-  const { setIsLoggedIn } = useAuth();
+  const { setIsLoggedIn,updateAuthFromToken } = useAuth();
 
   const UsernameRef = useRef<HTMLInputElement>(null);
   const PasswordRef = useRef<HTMLInputElement>(null);
@@ -25,7 +25,8 @@ function Signin() {
 
       const jwt = response.data.token;
       localStorage.setItem("token", jwt);
-      setIsLoggedIn(true); // ← important line
+       updateAuthFromToken();
+      setIsLoggedIn(true);
       toast.success("Login successful!");
       navigate("/dashboard");
 
