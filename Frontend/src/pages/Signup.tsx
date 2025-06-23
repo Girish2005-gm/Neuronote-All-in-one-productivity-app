@@ -71,7 +71,7 @@ function Signup() {
             <input
               type="text"
               ref={UsernameRef}
-              placeholder="Enter your email"
+              placeholder="Enter your Username"
               className="mt-1 p-[6px] text-sm w-full border rounded-md focus:outline-none focus:ring-1 focus:ring-[#E85A5A]"
             />
           </div>
